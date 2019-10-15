@@ -16,6 +16,14 @@ namespace ConsoleApp1
 
             rl.SetTargetFPS(60);
             //--------------------------------------------------------------------------------------
+            MyShape triangle = new MyShape();
+            triangle.MyPoints.Add(new Vector2(10, 10));
+            triangle.MyPoints.Add(new Vector2(20, 30));
+            triangle.MyPoints.Add(new Vector2(30, 10));
+            triangle.MyPoints.Add(new Vector2(10, 10));
+            triangle.MyPoints.Add(new Vector2(40, 30));
+            triangle.MyPoints.Add(new Vector2(50, 10));
+            triangle.position = new Vector2(100, 100);
 
             // Main game loop
             while (!rl.WindowShouldClose())    // Detect window close button or ESC key
@@ -32,7 +40,8 @@ namespace ConsoleApp1
                 rl.ClearBackground(Color.RAYWHITE);
 
                 rl.DrawText("Congrats! You created your first window!", 190, 200, 20, Color.LIGHTGRAY);
-
+                triangle.Draw();
+                triangle.position.x += .2f;
                 rl.EndDrawing();
                 //----------------------------------------------------------------------------------
             }
