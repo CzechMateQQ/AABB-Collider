@@ -25,6 +25,9 @@ namespace ConsoleApp1
             triangle.MyPoints.Add(new Vector2(50, 10));
             triangle.position = new Vector2(100, 100);
 
+            //TODO:Create another object with a different shape
+
+
             // Main game loop
             while (!rl.WindowShouldClose())    // Detect window close button or ESC key
             {
@@ -42,6 +45,13 @@ namespace ConsoleApp1
                 rl.DrawText("Congrats! You created your first window!", 190, 200, 20, Color.LIGHTGRAY);
                 triangle.Draw();
                 triangle.position.x += .2f;
+
+                //TODO:Move the 2nd object so that it is on a collision course with the triangle
+                //TODO:Implement AABB Collision detection so you know when they hit.
+
+                //TODO:Bonus have your AABB Box drawn as a green outline to the shapes, and then turn red 
+                //When they collide.
+
                 rl.EndDrawing();
                 //----------------------------------------------------------------------------------
             }
