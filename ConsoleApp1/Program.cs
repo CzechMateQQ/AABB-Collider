@@ -48,9 +48,14 @@ namespace ConsoleApp1
 
                 //TODO:Move the 2nd object so that it is on a collision course with the triangle
                 //TODO:Implement AABB Collision detection so you know when they hit.
+                //Recommend adding the AABB Functionality to the myshape class.
+                //Add a method to the myshape class that causes the Bounding box to be recalculated and 
+                //stored in the myshape class (with the corners/vectors relative to itself)
+                
 
                 //TODO:Bonus have your AABB Box drawn as a green outline to the shapes, and then turn red 
                 //When they collide.
+                
 
                 rl.EndDrawing();
                 //----------------------------------------------------------------------------------
