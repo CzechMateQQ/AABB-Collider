@@ -17,16 +17,36 @@ namespace ConsoleApp1
             rl.SetTargetFPS(60);
             //--------------------------------------------------------------------------------------
             MyShape triangle = new MyShape();
-            triangle.MyPoints.Add(new Vector2(10, 10));
-            triangle.MyPoints.Add(new Vector2(20, 30));
-            triangle.MyPoints.Add(new Vector2(30, 10));
-            triangle.MyPoints.Add(new Vector2(10, 10));
-            triangle.MyPoints.Add(new Vector2(40, 30));
-            triangle.MyPoints.Add(new Vector2(50, 10));
+            triangle.MyPoints.Add(new Vector2(0, 20));
+            triangle.MyPoints.Add(new Vector2(20, -20));
+            triangle.MyPoints.Add(new Vector2(-20, -20));
+            triangle.MyPoints.Add(new Vector2(0, 20));
             triangle.position = new Vector2(100, 100);
 
-            //TODO:Create another object with a different shape
+            MyShape square = new MyShape();
+            square.MyPoints.Add(new Vector2(20, -20));
+            square.MyPoints.Add(new Vector2(20, 20));
+            square.MyPoints.Add(new Vector2(-20, 20));
+            square.MyPoints.Add(new Vector2(-20, -20));
+            square.MyPoints.Add(new Vector2(20, -20));
+            square.position = new Vector2(220, 100);
 
+            foreach(Vector2 v in triangle.MyPoints)
+            {
+                triangle.Global.Add(v + triangle.position);
+            }
+
+            foreach(Vector2 v in square.MyPoints)
+            {
+                square.Global.Add(v + square.position);
+            }
+
+            triangle.box.Fit(triangle.Global);
+            square.box.Fit(square.Global);
+
+            //TODO:Create another object with a different shape
+            float tv = .3f;
+            float sv = -.3f;
 
             // Main game loop
             while (!rl.WindowShouldClose())    // Detect window close button or ESC key
@@ -44,7 +64,31 @@ namespace ConsoleApp1
 
                 rl.DrawText("Congrats! You created your first window!", 190, 200, 20, Color.LIGHTGRAY);
                 triangle.Draw();
-                triangle.position.x += .2f;
+                triangle.position.x += tv;
+
+                square.Draw();
+                square.position.x += sv;
+
+                foreach (Vector2 v in triangle.MyPoints)
+                {
+                    triangle.Global.Add(v + triangle.position);
+                }
+
+                foreach (Vector2 v in square.MyPoints)
+                {
+                    square.Global.Add(v + square.position);
+                }
+
+                triangle.box.Fit(triangle.Global);
+                square.box.Fit(square.Global);
+
+                if (triangle.box.Overlaps(square.box))
+                {
+                    tv = -.2f;
+                    sv = .2f;
+                    triangle.myColor = Color.RED;
+                    square.myColor = Color.RED;
+                }
 
                 //TODO:Move the 2nd object so that it is on a collision course with the triangle
                 //TODO:Implement AABB Collision detection so you know when they hit.
